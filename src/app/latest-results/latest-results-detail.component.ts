@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DrawResult } from './DrawResult.model';
+import { DrawResult } from '../DrawResult.model';
 
 @Component({
   moduleId: module.id,

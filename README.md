@@ -1,6 +1,6 @@
 # Ng2Lotto 
 
-A sample angular 2 app to get the latest results from thelott.com/salotteries. 
+A sample Angular 2 app to get the latest results from thelott.com/salotteries. 
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.9.
 
@@ -31,3 +31,15 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+=========================================================
+Initial commit to GIT 
+
+echo "# ng2-lotto" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/hjc1983/ng2-lotto.git
+git push -u origin master
