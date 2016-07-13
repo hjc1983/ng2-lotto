@@ -4,3 +4,7 @@
 <div id='lateestResults'>
     <app-latest-results></app-latest-results>
 </div>
+
+<button type="button" (click)="makeRequest()">Make Request</button>
+<div *ngIf="loading">hello...</div>
+<pre>{{data | json}}</pre>
