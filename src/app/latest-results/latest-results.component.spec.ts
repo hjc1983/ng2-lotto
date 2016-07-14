@@ -2,7 +2,7 @@
 
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
+import { LottoService } from '../lotto.service';
 import {
   beforeEach, beforeEachProviders,
   describe, xdescribe,
@@ -14,7 +14,7 @@ import { LatestResultsComponent } from './latest-results.component';
 
 describe('Component: LatestResults', () => {
   it('should create an instance', () => {
-    let component = new LatestResultsComponent();
-    expect(component).toBeTruthy();
-  });
-});
+     inject([LottoService], (Component: LottoService) => {
+    expect(Component).toBeTruthy();
+  });})});
+

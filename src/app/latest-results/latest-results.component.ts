@@ -1,6 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { LatestResultsDetailComponent } from './latest-results-detail.Component';
 import { DrawResult } from '../DrawResult.model';
+import { DrawResults } from '../DrawResult.model';
 import { LottoService } from '../lotto.service';
 
 @Component({
@@ -8,10 +10,10 @@ import { LottoService } from '../lotto.service';
   selector: 'app-latest-results',
   template: `<h1>{{title}}</h1>
     <ul class="draws">
-      <li *ngFor="let draw of drawResults"
+      <li *ngFor="let draw of (drawResults |async);  let i=index"
         [class.selected]="draw === selectedDraw"
         (click)="onSelect(draw)">
-        <span class="badge">{{draw.DrawDate}}</span> {{draw.ProductId}}
+        <span class="badge">{{i+1}}</span> {{draw.ProductId}} - {{draw.DrawDate}}
       </li>
     <ul>
     <my-draw-detail [draw]="selectedDraw"></my-draw-detail>`,
@@ -21,21 +23,20 @@ import { LottoService } from '../lotto.service';
 
 })
 export class LatestResultsComponent implements OnInit {
-  title = 'LOTTO';
-  drawResults: DrawResult[];
+  title = 'SALotteries';
+  drawResults: Observable<DrawResults[]>;
   selectedDraw: DrawResult;
+  lottoDR$: Observable<DrawResult>;
 
   onSelect(draw: DrawResult) { this.selectedDraw = draw; }
 
-  getLatestResults() {
-    //this.drawResults = this.lottoService.getLatestResults();
-    this.lottoService.getLatestResults().then(r => this.drawResults = r);  //also try getLatestResultsSlowly()
-  }
 
-  constructor(private lottoService: LottoService) { }
-
+  constructor(private _lottoService: LottoService) { }
   ngOnInit() {
-    this.getLatestResults();
+    //this.getLatestResults();
+    this.lottoDR$ = this._lottoService.lottoDR$;
+    this._lottoService.getLatestResults();
+    this.drawResults = this.lottoDR$.map(m=>m.DrawResults);
   }
 
 }

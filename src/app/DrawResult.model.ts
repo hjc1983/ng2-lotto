@@ -1,4 +1,10 @@
 export class DrawResult {
+    DrawResults: DrawResults[];
+    ErrorInfo: any;
+    Success: boolean;
+}
+
+export class DrawResults {
     ProductId: string;
     DrawNumber: number;
     DrawDate: string;
